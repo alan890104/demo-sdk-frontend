@@ -7,6 +7,7 @@ import {
   useTonConnectUI,
 } from "@tonconnect/ui-react";
 import { MySDK } from "alan-sdk";
+import { Address } from "@ton/ton";
 
 function App() {
   const [tonconnectUI] = useTonConnectUI();
@@ -14,6 +15,7 @@ function App() {
   const handleClick = async () => {
     const sdk = new MySDK("Alan");
     const payload = sdk.greet(addr);
+    alert(` Your address is : ${Address.parse(addr)}`);
     tonconnectUI.sendTransaction({
       validUntil: Math.floor(Date.now() / 1000) + 3600,
       messages: [
