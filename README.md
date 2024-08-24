@@ -24,43 +24,43 @@ yarn create vite@latest
 
 4. Install the following dependencies (Optional):
 
-```bash
-yarn add alan-sdk@latest @ton/ton @ton/crypto @tonconnect/ui-react
-```
+    ```bash
+    yarn add alan-sdk@latest @ton/ton @ton/crypto @tonconnect/ui-react
+    ```
 
 5. Install rollup for building the project:
 
-```bash
-yarn add @rollup/plugin-inject vite-plugin-node-polyfills -D
-```
+    ```bash
+    yarn add @rollup/plugin-inject vite-plugin-node-polyfills -D
+    ```
 
 6. Modify `vite.config.ts` to include the following:
 
-```typescript
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import inject from '@rollup/plugin-inject';
-import { nodePolyfills } from 'vite-plugin-node-polyfills'
+    ```typescript
+    import { defineConfig } from 'vite'
+    import react from '@vitejs/plugin-react'
+    import inject from '@rollup/plugin-inject';
+    import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    react(),
-    nodePolyfills({
-      globals: {
-        Buffer: true, // can also be 'build', 'dev', or false
-        global: true,
-        process: true,
+    // https://vitejs.dev/config/
+    export default defineConfig({
+      plugins: [
+        react(),
+        nodePolyfills({
+          globals: {
+            Buffer: true, // can also be 'build', 'dev', or false
+            global: true,
+            process: true,
+          },
+        })],
+      build: {
+        rollupOptions: {
+          plugins: [inject({ Buffer: ['buffer', 'Buffer'] })],
+        },
       },
-    })],
-  build: {
-    rollupOptions: {
-      plugins: [inject({ Buffer: ['buffer', 'Buffer'] })],
-    },
-  },
-})
+    })
 
-```
+    ```
 
 7. Modify `.gitignore` to include the following:
 
@@ -105,4 +105,8 @@ export default defineConfig({
   !rollup.config.js
   ```
 
-6. 
+6. Build the project:
+
+    ```bash
+    yarn build
+    ```
