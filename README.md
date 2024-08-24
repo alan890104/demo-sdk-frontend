@@ -117,7 +117,7 @@ yarn create vite@latest
 1. Link `alan-sdk`, assuming the SDK is at the same level as the project:
   
     ```bash
-    YARN_IGNORE_PATH=1  yarn link ../alan-sdk
+    YARN_IGNORE_PATH=1  yarn link <path to alan-sdk>
     ``` 
 
 2. **DO NOT PUSH** `package.json` and `yarn.lock` to the repository after linking the SDK.
